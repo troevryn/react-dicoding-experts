@@ -1,0 +1,67 @@
+/* eslint-disable max-len */
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import {
+  asyncReceiveThreadDetail,
+  asyncToogleDislikeThreadDetail,
+  asyncToogleLikeThreadDetail,
+  asyncToogleNeutralThreadDetail,
+} from '../../../states/threadDetail/action';
+import useInput from '../../../hooks/useInput';
+import {
+  asyncAddComment, asyncToogleDislikeComment, asyncToogleLikeComment, asyncToogleNeutralComment,
+} from '../../../states/comments/action';
+
+function DetailThreadViewModel() {
+  const { id } = useParams();
+  const { threadDetail = null, authUser } = useSelector((states) => states); // @TODO: get talkDetail and authUser state from store
+  const dispatch = useDispatch();
+  const [comment, onChangeComment, setComment] = useInput('');
+
+  useEffect(() => {
+    if (id) {
+      dispatch(asyncReceiveThreadDetail(id));
+    }
+  }, [dispatch, id]);
+
+  function onVoteUp() {
+    dispatch(asyncToogleLikeThreadDetail());
+  }
+  function onVoteDown() {
+    dispatch(asyncToogleDislikeThreadDetail());
+  }
+  function onVoteNeutral() {
+    dispatch(asyncToogleNeutralThreadDetail());
+  }
+  function onSendFormComment() {
+    dispatch(asyncAddComment({ content: comment }));
+    setComment('');
+  }
+  function onVoteDownComment(commentId) {
+    dispatch(asyncToogleDislikeComment(commentId));
+  }
+  function onVoteUpComment(commentId) {
+    dispatch(asyncToogleLikeComment(commentId));
+  }
+
+  function onVoteNeutralComment(commentId) {
+    dispatch(asyncToogleNeutralComment(commentId));
+  }
+
+  return {
+    threadDetail,
+    authUser,
+    onVoteDown,
+    onVoteUp,
+    onVoteNeutral,
+    onChangeComment,
+    onSendFormComment,
+    comment,
+    onVoteDownComment,
+    onVoteUpComment,
+    onVoteNeutralComment,
+  };
+}
+
+export default DetailThreadViewModel;
