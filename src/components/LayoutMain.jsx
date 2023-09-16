@@ -20,7 +20,7 @@ function LayoutMain({ children }) {
       <Loading />
 
       <header className="bg-green-600 w-full top-0 sticky p-4">
-        <h1 className="text-white text-3xl">App Forum</h1>
+        <h1 className="text-white text-3xl">App Forum New</h1>
       </header>
 
       <main className="flex-1 max-w-7xl mx-auto px-8 py-4 overflow-y-auto">
