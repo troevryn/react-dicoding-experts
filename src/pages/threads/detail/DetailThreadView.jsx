@@ -4,8 +4,8 @@ import React from 'react';
 import LabelCategory from '../../../components/LabelCategory';
 import DetailThreadViewModel from './DetailThreadViewModel';
 import LikeDisLikeAuthor from '../../../components/LikeDisLikeAuthor';
-import FormComment from '../../../components/FormComment';
 import CardComment from '../../../components/CardComment';
+import FormComment from '../../../components/FormComment';
 
 function DetailThreadView() {
   const {
@@ -14,8 +14,6 @@ function DetailThreadView() {
     onVoteNeutral,
     onVoteUp,
     authUser,
-    comment,
-    onChangeComment,
     onSendFormComment, onVoteDownComment, onVoteUpComment, onVoteNeutralComment,
   } = DetailThreadViewModel();
   if (!threadDetail) {
@@ -57,9 +55,7 @@ function DetailThreadView() {
       />
       <hr />
       <FormComment
-        onChangeComment={onChangeComment}
         onSendForm={onSendFormComment}
-        valueComment={comment}
       />
       <div className="flex flex-col gap-4">
         <h4 className="text-blue-500 font-medium text-lg">

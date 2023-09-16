@@ -28,7 +28,7 @@ function LayoutMain({ children }) {
       </main>
       <footer className="bottom-0 bg-green-600 w-full p-4 sticky text-white">
         <div className="flex justify-center">
-          <div className="flex gap-4 items-center">
+          <nav className="flex gap-4 items-center">
             <Link to="/">
               <div className="flex flex-col items-center hover:text-gray-300">
                 <AiOutlineHome size={32} />
@@ -54,7 +54,7 @@ function LayoutMain({ children }) {
               Logout
 
             </button>
-          </div>
+          </nav>
         </div>
       </footer>
     </div>

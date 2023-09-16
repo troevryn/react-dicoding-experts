@@ -8,7 +8,6 @@ import {
   asyncToogleLikeThreadDetail,
   asyncToogleNeutralThreadDetail,
 } from '../../../states/threadDetail/action';
-import useInput from '../../../hooks/useInput';
 import {
   asyncAddComment, asyncToogleDislikeComment, asyncToogleLikeComment, asyncToogleNeutralComment,
 } from '../../../states/comments/action';
@@ -17,7 +16,6 @@ function DetailThreadViewModel() {
   const { id } = useParams();
   const { threadDetail = null, authUser } = useSelector((states) => states); // @TODO: get talkDetail and authUser state from store
   const dispatch = useDispatch();
-  const [comment, onChangeComment, setComment] = useInput('');
 
   useEffect(() => {
     if (id) {
@@ -34,9 +32,8 @@ function DetailThreadViewModel() {
   function onVoteNeutral() {
     dispatch(asyncToogleNeutralThreadDetail());
   }
-  function onSendFormComment() {
+  function onSendFormComment(comment) {
     dispatch(asyncAddComment({ content: comment }));
-    setComment('');
   }
   function onVoteDownComment(commentId) {
     dispatch(asyncToogleDislikeComment(commentId));
@@ -55,9 +52,7 @@ function DetailThreadViewModel() {
     onVoteDown,
     onVoteUp,
     onVoteNeutral,
-    onChangeComment,
     onSendFormComment,
-    comment,
     onVoteDownComment,
     onVoteUpComment,
     onVoteNeutralComment,
