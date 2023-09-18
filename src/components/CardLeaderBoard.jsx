@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 function CardLeaderBoard({ name, score, avatar }) {
   return (
-    <div className="flex justify-between gap-4">
+    <div className="flex justify-between gap-4 border-2 p-4 items-center rounded-xl">
       <div className="flex items-center gap-4">
         <img src={avatar} className="w-[50px] h-[50px] rounded-full" alt={name} />
         {name}
